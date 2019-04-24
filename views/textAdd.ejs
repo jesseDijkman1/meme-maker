@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>Meme-Maker</title>
+</head>
+
+<body>
+  <main>
+    <canvas id="meme-canvas" widht="500" height="500" data-img="<%= imgName %>"></canvas>
+    <form id="meme-editor">
+
+      <input id="add-txt" class="visuallyhidden section-toggler" type="checkbox" checked>
+      <label for="add-txt" class="editor-section-title">Add Text</label>
+
+      <fieldset class="editor-section meme-txt">
+        <div class="input-container">
+          <label for="top-txt">Top Text</label>
+          <input id="top-txt" class="update-key" type="text">
+        </div>
+
+        <div class="input-container">
+          <label for="bottom-txt">Bottom Text</label>
+          <input id="bottom-txt" class="update-key" type="text">
+        </div>
+      </fieldset>
+
+
+      <input id="add-txt-size" class="visuallyhidden section-toggler" type="checkbox">
+      <label for="add-txt-size" class="editor-section-title">Font Size</label>
+
+      <fieldset class="editor-section meme-txt-size">
+        <div class="input-container">
+          <label for="top-txt-size">Top Text Size</label>
+          <input id="top-txt-size" type="number" value="16">
+        </div>
+        <div class="input-container">
+          <label for="bottom-txt-size">Bottom Text Size</label>
+          <input id="bottom-txt-size" type="number" value="16">
+        </div>
+      </fieldset>
+
+      <input id="add-txt-position" class="visuallyhidden section-toggler" type="checkbox">
+      <label for="add-txt-position" class="editor-section-title">Text Position</label>
+
+      <fieldset class="editor-section meme-txt-position">
+        <label for="auto-position">Auto</label>
+        <input id="auto-position" class="disable-next" type="checkbox" checked>
+
+        <div class="input-container">
+          <label for="top-txt-position">Top Text Position</label>
+          <input id="top-txt-position" type="number" value="10">
+        </div>
+        <div class="input-container">
+          <label for="bottom-txt-position">Bottom Text Position</label>
+          <input id="bottom-txt-position" type="number" value="10">
+        </div>
+      </fieldset>
+
+      <input id="add-txt-color" class="visuallyhidden section-toggler" type="checkbox">
+      <label for="add-txt-color" class="editor-section-title">Font Color</label>
+
+      <fieldset class="editor-section meme-txt-color">
+        <input id="section-type-rgb" class="visuallyhidden" type="radio" name="color-section-type" checked>
+        <input id="section-type-hsl" class="visuallyhidden" type="radio" name="color-section-type">
+
+        <label for="section-type-rgb">RGB</label>
+        <label for="section-type-hsl">HSL</label>
+
+
+        <section class="color-type rgb">
+          <div class="color-slider">
+            <label for="rgb-red">R</label>
+            <input id="rgb-red" type="range" min="0" max="255" data-char="r" data-color-type="rgb" value="255">
+            <input class="slider-val" type="number">
+          </div>
+
+          <div class="color-slider">
+            <label for="rgb-green">G</label>
+            <input id="rgb-green" type="range" min="0" max="255" data-char="g" data-color-type="rgb" value="255">
+            <input class="slider-val" type="number">
+          </div>
+
+          <div class="color-slider">
+            <label for="rgb-blue">B</label>
+            <input id="rgb-blue" type="range" min="0" max="255" data-char="b" data-color-type="rgb" value="255">
+            <input class="slider-val" type="number">
+          </div>
+        </section>
+
+        <section class="color-type hsl">
+          <div class="color-slider">
+            <label for="hsl-hue">H</label>
+            <input id="hsl-hue" type="range" min="0" max="360" data-char="h" data-color-type="hsl" value="360">
+            <input class="slider-val" type="number">
+          </div>
+
+          <div class="color-slider">
+            <label for="hsl-saturation">S</label>
+            <input id="hsl-saturation" type="range" min="0" max="100" data-char="s" data-color-type="hsl" data-unit="%" value="100">
+            <input class="slider-val" type="number" data-unit="%">
+          </div>
+
+          <div class="color-slider">
+            <label for="hsl-lightness">L</label>
+            <input id="hsl-lightness" type="range" min="0" max="100" data-char="l" data-color-type="hsl" data-unit="%" value="100">
+            <input class="slider-val" type="number" data-unit="%">
+          </div>
+        </section>
+        <div id="color-preview"></div>
+      </fieldset>
+    </form>
+  </main>
+
+  <aside class="key-legend">
+    <ul>
+      <li>, = -30</li>
+      <li>. = +30</li>
+      <li>Arrow Up = +10</li>
+      <li>Arrow Down = -10</li>
+      <li>Arrow Left = -1</li>
+      <li>Arrow Right = +1</li>
+    </ul>
+  </aside>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
