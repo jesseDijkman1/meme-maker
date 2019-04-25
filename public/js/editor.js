@@ -237,59 +237,10 @@ void function() {
       selectInput(editorSections[i]).focus()
     }
 
+
+
     if (selectInput(editorSections[i]).classList.contains("positioner")) {
-      let state = false
-      let tst = 1;
-
-      selectInput(editorSections[i]).addEventListener("keyup", e => {
-        tst = 1
-      })
-
-      selectInput(editorSections[i]).addEventListener("keydown", e => {
-
-
-        if (e.keyCode == 32) {
-          if (state == false) {
-            state = true
-            e.target.classList.add("moving")
-          } else {
-            state = false
-            e.target.classList.remove("moving")
-          }
-        }
-
-
-
-        if (state) {
-
-          tst += .1;
-          switch (e.keyCode) {
-            case 37: // Arrow Left
-              meme.topPos.x -= tst;
-              // setTimeout(() => meme.topTxtPos(), 0)
-            break;
-
-            case 38: // Arrow Up
-              meme.topPos.y -= tst
-              // setTimeout(() => meme.topTxtPos(), 0)
-            break;
-
-            case 39: // Arrow Right
-              meme.topPos.x += tst;
-              // setTimeout(() => meme.topTxtPos(), 0)
-            break;
-
-            case 40: // Arrow Down
-              meme.topPos.y += tst;
-
-            break;
-          }
-
-          setTimeout(() => meme.topTxtPos(e), 0)
-        }
-
-
-      })
+      positioner(editorSections[i])
     } else {
       selectInput(editorSections[i]).addEventListener("keydown", switchTarget)
     }
@@ -416,12 +367,12 @@ function selectInput(el) {
 
 function switchTarget(e) {
   const allowedKeys = [38, 40, 32];
-
   if (allowedKeys.includes(e.keyCode)) {
-    e.preventDefault()
+
 
     switch (e.keyCode) {
       case 38: // Arrow Up
+      e.preventDefault()
       console.log("Up")
       if (!e.target.previousElementSibling) {
         e.target.parentElement.previousElementSibling.focus()
@@ -433,6 +384,7 @@ function switchTarget(e) {
       break;
 
       case 40: // Arrow Down
+      e.preventDefault()
       console.log("ofaijwe")
       if (e.target.nextElementSibling.nodeName == "FOOTER") {
         e.target.nextElementSibling.firstElementChild.focus()
@@ -449,8 +401,109 @@ function switchTarget(e) {
       break;
 
       case 32: // Space
-        e.target.click()
+        // if (e.target.nodeName === "BUTTON") {
+
+          // e.target.click()
+        // }
+
       break;
     }
   }
+}
+
+function positioner(el) {
+  console.log(el)
+  let state = false
+  let tst = 1;
+
+  // selectInput(el).addEventListener("keyup", e => {
+  //   state = false;
+  //   tst = 1
+  //   e.target.classList.remove("moving")
+  // })
+
+  // selectInput(el).addEventListener("keypress", e => {
+  //   console.log("pressed")
+  // })
+
+  selectInput(el).addEventListener("keyup", e => {
+    tst = 1;
+  })
+
+  selectInput(el).addEventListener("keydown", e => {
+    console.log(state)
+    if (e.keyCode == 32) {
+      if (state == false) {
+        state = true
+        e.target.classList.add("moving")
+      } else {
+        state = false
+        e.target.classList.remove("moving")
+      }
+    }
+
+    if (state) {
+      tst += .1;
+
+      switch (e.keyCode) {
+        case 37: // Arrow Left
+        if (e.target.classList.contains("top")) {
+          meme.topPos.x -= tst;
+        } else {
+          meme.bottomPos.x -= tst;
+        }
+          // setTimeout(() => meme.topTxtPos(), 0)
+        break;
+
+        case 38: // Arrow Up
+        if (e.target.classList.contains("top")) {
+          meme.topPos.y -= tst
+        } else {
+          meme.bottomPos.y -= tst
+        }
+          // setTimeout(() => meme.topTxtPos(), 0)
+        break;
+
+        case 39: // Arrow Right
+
+        if (e.target.classList.contains("top")) {
+          meme.topPos.x += tst;
+        } else {
+          meme.bottomPos.x += tst;
+        }
+
+          // setTimeout(() => meme.topTxtPos(), 0)
+        break;
+
+        case 40: // Arrow Down
+        if (e.target.classList.contains("top")) {
+          meme.topPos.y += tst;
+        } else {
+          meme.bottomPos.y += tst;
+        }
+        break;
+      }
+
+      setTimeout(() => meme.topTxtPos(e), 0)
+    } else {
+      if (e.keyCode == 40) {
+        // Arrow down
+        e.target.nextElementSibling.querySelector("button.previous").focus()
+        e.target.nextElementSibling.querySelector("button.previous").addEventListener("keydown", ev => {
+          if (ev.keyCode == 38) {
+            e.target.focus()
+          }
+          if (ev.keyCode == 40) {
+            ev.target.nextElementSibling.focus()
+            ev.target.nextElementSibling.addEventListener("keydown", eve => {
+              if (eve.keyCode == 38) {
+                ev.target.focus()
+              }
+            })
+          }
+        })
+
+      }
+    }
+  })
 }

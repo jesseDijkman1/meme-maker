@@ -244,10 +244,10 @@ a {
   /* background: rgba(0,0,0,.05) */
   background: #efefef;
 }
-button:focus {
+/* button:focus {
   outline: none;
   border: solid .2em #ffff84;
-}
+} */
 #meme-background:focus + [for="meme-background"] {
   border: solid .2em #ffff84;
   /* box-sizing: border-box !important; */
