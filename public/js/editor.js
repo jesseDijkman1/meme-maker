@@ -1,8 +1,8 @@
 "use strict";
 const canvas = document.getElementById("meme-canvas");
 
-const topTxtInput = document.getElementById("top-txt");
-const bottomTxtInput = document.getElementById("bottom-txt");
+const topTxtInput = document.querySelector(".editor-section.section-top input[type=text]");
+const bottomTxtInput = document.querySelector(".editor-section.section-bottom input[type=text]");
 
 const topTxtSizeInput = document.getElementById("top-txt-size");
 const bottomTxtSizeInput = document.getElementById("bottom-txt-size");
@@ -15,6 +15,9 @@ const colorSliders = document.querySelectorAll(".color-slider input[type=range]"
 const colorPreview = document.getElementById("color-preview");
 
 const downloadBtn = document.getElementById("download-meme");
+
+const sectionButtons = document.getElementsByClassName("section-button");
+// const nextBtn = document.querySelectorAll(".section-button.next");
 
 class Meme {
   constructor(c) {
@@ -138,84 +141,88 @@ const keys = {
 topTxtInput.addEventListener("keydown", e => {
   setTimeout(() => meme.topTxt(e), 0)
 });
-
+//
 bottomTxtInput.addEventListener("keydown", e => {
   setTimeout(() => meme.bottomTxt(e), 0)
 });
-
-topTxtSizeInput.addEventListener("keydown", e => {
-
-  if (keys[e.keyCode]) {
-    e.preventDefault()
-
-    e.target.value = parseInt(e.target.value) + keys[e.keyCode]
-  }
-
-  setTimeout(() => meme.topTxtSize(e), 0)
-});
-
-bottomTxtSizeInput.addEventListener("keydown", e => {
-  if (keys[e.keyCode]) {
-    e.preventDefault()
-
-    e.target.value = parseInt(e.target.value) + keys[e.keyCode]
-  }
-
-  setTimeout(() => meme.bottomTxtSize(e), 0)
-});
-
-topTxtPosInput.addEventListener("keydown", e => {
-  if (keys[e.keyCode]) {
-    e.preventDefault()
-
-    e.target.value = parseInt(e.target.value) + keys[e.keyCode]
-  }
-
-  setTimeout(() => meme.topTxtPos(e), 0)
-})
-
-bottomTxtPosInput.addEventListener("keydown", e => {
-  if (keys[e.keyCode]) {
-    e.preventDefault()
-
-    e.target.value = parseInt(e.target.value) + keys[e.keyCode]
-  }
-
-  setTimeout(() => meme.bottomTxtPos(e), 0)
-})
-
-autoTxtPosInput.addEventListener("change", e => {
-  setTimeout(() => meme.autoTxtPos(e), 0)
-})
+//
+// topTxtSizeInput.addEventListener("keydown", e => {
+//
+//   if (keys[e.keyCode]) {
+//     e.preventDefault()
+//
+//     e.target.value = parseInt(e.target.value) + keys[e.keyCode]
+//   }
+//
+//   setTimeout(() => meme.topTxtSize(e), 0)
+// });
+//
+// bottomTxtSizeInput.addEventListener("keydown", e => {
+//   if (keys[e.keyCode]) {
+//     e.preventDefault()
+//
+//     e.target.value = parseInt(e.target.value) + keys[e.keyCode]
+//   }
+//
+//   setTimeout(() => meme.bottomTxtSize(e), 0)
+// });
+//
+// topTxtPosInput.addEventListener("keydown", e => {
+//   if (keys[e.keyCode]) {
+//     e.preventDefault()
+//
+//     e.target.value = parseInt(e.target.value) + keys[e.keyCode]
+//   }
+//
+//   setTimeout(() => meme.topTxtPos(e), 0)
+// })
+//
+// bottomTxtPosInput.addEventListener("keydown", e => {
+//   if (keys[e.keyCode]) {
+//     e.preventDefault()
+//
+//     e.target.value = parseInt(e.target.value) + keys[e.keyCode]
+//   }
+//
+//   setTimeout(() => meme.bottomTxtPos(e), 0)
+// })
+//
+// autoTxtPosInput.addEventListener("change", e => {
+//   setTimeout(() => meme.autoTxtPos(e), 0)
+// })
 
 void function() {
   const colors = {}
 
-  function updateColor(colorType) {
-    const type = colorType;
-    const data = colors[colorType];
+  // function updateColor(colorType) {
+  //   const type = colorType;
+  //   const data = colors[colorType];
+  //
+  //   const color = `${type}(${Object.keys(data).map(key => {
+  //     return `${data[key].value}${data[key].unit}`
+  //   }).join(",")})`
+  //
+  //   colorPreview.style.setProperty("background", color)
+  //
+  //   meme.updateTxtColor(color);
+  // }
 
-    const color = `${type}(${Object.keys(data).map(key => {
-      return `${data[key].value}${data[key].unit}`
-    }).join(",")})`
 
-    colorPreview.style.setProperty("background", color)
 
-    meme.updateTxtColor(color);
+  // for (let i = 0; i < colorSliders.length; i++) {
+  //   if (!colors[colorSliders[i].dataset.colorType]) {
+  //     colors[colorSliders[i].dataset.colorType] = {}
+  //   }
+  //
+  //   colors[colorSliders[i].dataset.colorType][colorSliders[i].dataset.char] = {
+  //     value: colorSliders[i].value,
+  //     unit: colorSliders[i].dataset.unit || ""
+  //   };
+
+
+  for (let i = 0; i < sectionButtons.length; i++) {
+    sectionButtons[i].addEventListener("click", goToSection)
   }
-
-
-
-  for (let i = 0; i < colorSliders.length; i++) {
-    if (!colors[colorSliders[i].dataset.colorType]) {
-      colors[colorSliders[i].dataset.colorType] = {}
-    }
-
-    colors[colorSliders[i].dataset.colorType][colorSliders[i].dataset.char] = {
-      value: colorSliders[i].value,
-      unit: colorSliders[i].dataset.unit || ""
-    };
-    //
     // const keys = {
     //   37: -1,
     //   38: 10,
@@ -225,69 +232,91 @@ void function() {
     //   190: 30
     // }
 
+  //
+  //
+  //   let valDisplay;
+  //
+  //   if (colorSliders[i].nextElementSibling.classList.contains("slider-val")) {
+  //     valDisplay = colorSliders[i].nextElementSibling
+  //     valDisplay.max = colorSliders[i].max;
+  //     valDisplay.min = colorSliders[i].min;
+  //     valDisplay.value = colorSliders[i].value;
+  //   }
+  //
+  //   valDisplay.addEventListener("keydown", (e) => {
+  //     let val = parseInt(colorSliders[i].value);
+  //
+  //     if (keys[e.keyCode]) {
+  //       e.preventDefault()
+  //
+  //       val += keys[e.keyCode];
+  //     }
+  //
+  //     if (val < parseInt(colorSliders[i].max) && val > parseInt(colorSliders[i].min)) {
+  //       colorSliders[i].value = val;
+  //     } else {
+  //       if (val >= parseInt(colorSliders[i].max)) {
+  //         colorSliders[i].value = colorSliders[i].max
+  //       } else {
+  //         colorSliders[i].value = colorSliders[i].min
+  //       }
+  //     }
+  //
+  //     colorSliders[i].value = val;
+  //
+  //     colors[colorSliders[i].dataset.colorType][colorSliders[i].dataset.char].value = val;
+  //
+  //     updateColor(colorSliders[i].dataset.colorType)
+  //   })
+  //
+  //   colorSliders[i].addEventListener("keydown", (e) => {
+  //     let val = parseInt(colorSliders[i].value);
+  //
+  //     if (keys[e.keyCode]) {
+  //       e.preventDefault()
+  //
+  //       val += keys[e.keyCode];
+  //
+  //       colorSliders[i].value = val;
+  //
+  //       valDisplay.value = colorSliders[i].value;
+  //
+  //       colors[colorSliders[i].dataset.colorType][colorSliders[i].dataset.char].value = val;
+  //
+  //       updateColor(colorSliders[i].dataset.colorType)
+  //     }
+  //   })
+  //
+  //   colorSliders[i].addEventListener("change", (e) => {
+  //     valDisplay.value = colorSliders[i].value;
+  //
+  //     colors[colorSliders[i].dataset.colorType][colorSliders[i].dataset.char].value = colorSliders[i].value;
+  //
+  //     updateColor(colorSliders[i].dataset.colorType)
+  //   })
+  // }
+  //
+  // updateColor("rgb");
+}()
 
+function goToSection(e) {
+  const parent = e.target.parentElement.parentElement;
 
-    let valDisplay;
+  parent.classList.add("disappear");
 
-    if (colorSliders[i].nextElementSibling.classList.contains("slider-val")) {
-      valDisplay = colorSliders[i].nextElementSibling
-      valDisplay.max = colorSliders[i].max;
-      valDisplay.min = colorSliders[i].min;
-      valDisplay.value = colorSliders[i].value;
+  setTimeout(() => {
+    parent.classList.remove("disappear");
+    parent.removeAttribute("data-selected");
+
+    // console.log(parent)
+    if (e.target.classList.contains("previous")) {
+      parent.previousElementSibling.classList.add("show");
+      parent.previousElementSibling.setAttribute("data-selected", null)
     }
 
-    valDisplay.addEventListener("keydown", (e) => {
-      let val = parseInt(colorSliders[i].value);
-
-      if (keys[e.keyCode]) {
-        e.preventDefault()
-
-        val += keys[e.keyCode];
-      }
-
-      if (val < parseInt(colorSliders[i].max) && val > parseInt(colorSliders[i].min)) {
-        colorSliders[i].value = val;
-      } else {
-        if (val >= parseInt(colorSliders[i].max)) {
-          colorSliders[i].value = colorSliders[i].max
-        } else {
-          colorSliders[i].value = colorSliders[i].min
-        }
-      }
-
-      colorSliders[i].value = val;
-
-      colors[colorSliders[i].dataset.colorType][colorSliders[i].dataset.char].value = val;
-
-      updateColor(colorSliders[i].dataset.colorType)
-    })
-
-    colorSliders[i].addEventListener("keydown", (e) => {
-      let val = parseInt(colorSliders[i].value);
-
-      if (keys[e.keyCode]) {
-        e.preventDefault()
-
-        val += keys[e.keyCode];
-
-        colorSliders[i].value = val;
-
-        valDisplay.value = colorSliders[i].value;
-
-        colors[colorSliders[i].dataset.colorType][colorSliders[i].dataset.char].value = val;
-
-        updateColor(colorSliders[i].dataset.colorType)
-      }
-    })
-
-    colorSliders[i].addEventListener("change", (e) => {
-      valDisplay.value = colorSliders[i].value;
-
-      colors[colorSliders[i].dataset.colorType][colorSliders[i].dataset.char].value = colorSliders[i].value;
-
-      updateColor(colorSliders[i].dataset.colorType)
-    })
-  }
-
-  updateColor("rgb");
-}()
+    if (e.target.classList.contains("next")) {
+      parent.nextElementSibling.classList.add("show");
+      parent.nextElementSibling.setAttribute("data-selected", null)
+    }
+  }, 400)
+}

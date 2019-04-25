@@ -10,10 +10,67 @@
 </head>
 
 <body>
-  <main>
+  <div class="bg-container"></div>
+  <main class="editor">
     <canvas id="meme-canvas" width="500" height="500" data-img="<%= imgSrc %>"></canvas>
     <form id="meme-editor">
-      <input id="add-txt" class="visuallyhidden section-toggler" type="checkbox" checked>
+      <fieldset class="editor-section section-top txt" data-selected>
+        <h1>Top Text</h1>
+        <input type="text">
+        <footer>
+          <button class="section-button next" type="button">Next</button>
+        </footer>
+      </fieldset>
+
+      <fieldset class="editor-section section-bottom txt">
+        <h1>Bottom Text</h1>
+        <input type="text">
+        <footer>
+          <button class="section-button previous" type="button">Previous</button>
+          <button class="section-button next" type="button">Next</button>
+        </footer>
+      </fieldset>
+
+      <fieldset class="editor-section section-top size">
+        <h1>Top Text Size</h1>
+        <input type="number">
+        <footer>
+          <button class="section-button previous" type="button">Previous</button>
+          <button class="section-button next" type="button">Next</button>
+        </footer>
+      </fieldset>
+
+      <fieldset class="editor-section section-bottom size">
+        <h1>Bottom Text Size</h1>
+        <input type="number">
+        <footer>
+          <button class="section-button previous" type="button">Previous</button>
+          <button class="section-button next" type="button">Next</button>
+        </footer>
+      </fieldset>
+
+      <fieldset class="editor-section section-top position">
+        <h1>Top Text Position</h1>
+        <button type="button">Move Text</button>
+        <footer>
+          <button class="section-button previous" type="button">Previous</button>
+          <button class="section-button next" type="button">Next</button>
+        </footer>
+      </fieldset>
+
+      <fieldset class="editor-section section-bottom position">
+        <h1>Bottom Text Position</h1>
+        <button type="button">Move Text</button>
+        <footer>
+          <button class="section-button previous" type="button">Previous</button>
+          <!-- <button class="section-button next" type="button">Next</button> -->
+        </footer>
+      </fieldset>
+
+      <fieldset class="section-top color"></fieldset>
+      <fieldset class="section-bottom color"></fieldset>
+
+      <!-- <input id="add-txt" class="visuallyhidden section-toggler" type="checkbox" checked>
       <label for="add-txt" class="editor-section-title">Add Text</label>
 
       <fieldset class="editor-section meme-txt">
@@ -111,20 +168,9 @@
           </div>
         </section>
         <div id="color-preview"></div>
-      </fieldset>
+      </fieldset> -->
     </form>
   </main>
-
-  <aside class="key-legend">
-    <ul>
-      <li>, = -30</li>
-      <li>. = +30</li>
-      <li>Arrow Up = +10</li>
-      <li>Arrow Down = -10</li>
-      <li>Arrow Left = -1</li>
-      <li>Arrow Right = +1</li>
-    </ul>
-  </aside>
   <script src="./js/editor.js"></script>
 </body>
 

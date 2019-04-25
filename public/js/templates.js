@@ -4,11 +4,8 @@ const images = document.querySelectorAll("#meme-templates a");
 
 for (let i = 0; i < images.length; i++) {
   if (i === 0) {
-    // setTimeout(() => {
       images[i].focus()
       images[i].addEventListener("keydown", switchTarget)
-    // }, 0)
-
   } else {
     images[i].addEventListener("focus", () => {
       images[i].addEventListener("keydown", switchTarget)

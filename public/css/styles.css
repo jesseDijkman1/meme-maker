@@ -25,16 +25,22 @@ a {
   opacity: .5;
 }
 
-main {
+.editor {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100vw;
+  height: 100vh;
+  /* padding: 0 10%; */
+  justify-content: center;
+  align-items: center;
 }
 
 #meme-canvas {
   max-width: 700px;
   height: auto;
   border: solid 1px black;
+  /* margin-left: auto; */
+  margin: 0 auto;
 }
 
 #auto-position:checked ~ .input-container {
@@ -52,6 +58,7 @@ main {
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
+  margin-right: auto;
   /* float: right; */
 }
 
@@ -334,4 +341,99 @@ button:focus {
   opacity: 1;
   border: solid .5rem white;
   transform: scale(1.1);
+}
+
+.editor-section {
+  --ani-speed: .25s;
+  display: block;
+  font-size: 1.5rem;
+  padding: 1em 2em;
+  background: white;
+  min-width: 320px;
+  width: 40vw;
+  border: none;
+}
+
+.editor-section.show {
+  /* animation-name: show 1s linear forwards; */
+  animation-name: show;
+  animation-duration: var(--ani-speed);
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.editor-section.disappear {
+  animation-name: disappear;
+  animation-duration: var(--ani-speed);
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  /* animation: disappear 1s linear forwards; */
+}
+
+.editor-section:not([data-selected]) {
+  display: none;
+  /* animation-name: disappear;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards; */
+  /* animation: disappear 1s ease forwards; */
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.editor-section h1 {
+  margin-bottom: .5em;
+  color: #2b2b2b;
+}
+
+.editor-section footer {
+  display: flex;
+  margin-top: 1.5em;
+  justify-content: space-between;
+}
+
+.editor-section input[type="text"] {
+  width: 100%;
+  font-size: inherit;
+  height: 3em;
+  padding: 0 .5em;
+  letter-spacing: .04em;
+  background: #f9f9f9;
+  border: none;
+  /* position: relative; */
+  /* border-bottom: solid .1em rgba(0,0,0,.15) */
+  /* box-shadow: inset 0px -2px 20px 0px rgba(0,0,0,0.1); */
+  box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.25);
+}
+
+.section-button {
+  font-size: 1.5em;
+  display: block;
+  border: none;
+  padding: .5em 1em;
+  background: var(--gradient-bg);
+  font-weight: bold;
+  letter-spacing: .04em;
+  color: white;
+  border-radius: 10em;
+  box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.25);
+}
+.section-button.previous {
+  margin-right: 2em;
 }
