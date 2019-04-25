@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>Meme-Maker</title>
+</head>
+
+<body>
+  <div class="bg-container"></div>
+    <main id="meme-templates">
+      <h1>Pick an image</h1>
+      <h2>Use arrows to select and space to use the image</h2>
+      <% data.forEach(d => { %>
+      <a href="">
+        <img class="template" src="<%= d.url %>" alt="<%= d.name %>">
+      </a>
+      <% }) %>
+    </main>
+  <script src="./js/templates.js"></script>
+</body>
+
+</html>

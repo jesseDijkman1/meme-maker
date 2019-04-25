@@ -1,3 +1,7 @@
+:root {
+  --gradient-bg: linear-gradient(to top left, #00cc66 0%, #6600ff 100%);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -160,7 +164,7 @@ main {
   flex-direction: column;
 }
 
-#start-button {
+/* #start-button {
   font-size: 4rem;
   padding: .25em 1em;
   background: #5e9af9;
@@ -168,12 +172,30 @@ main {
   font-weight: bold;
   color: white;
   letter-spacing: .05em;
+} */
+
+#start-button {
+  width: 100vw;
+  font-size: 4rem;
+  line-height: 1em;
+  padding: calc( ( 100vh - 1em ) / 2 ) 0;
+  text-align: center;
+  position: relative;
+  font-weight: bold;
+  color: white;
+  letter-spacing: .04em;
+  /* background: linear-gradient(to top left, #00cc66 0%, #6600ff 100%); */
+  background: var(--gradient-bg);
+  animation: textGrow 1s linear infinite alternate;
 }
 
-#start-button:focus {
-  outline: none;
-  border: solid .1em #ffff84;
-  animation: focusGrow .3s linear infinite alternate;
+@keyframes textGrow {
+  0% {
+    font-size: 3.5rem;
+  }
+  100% {
+    font-size: 4rem;
+  }
 }
 
 .img-form {
@@ -269,4 +291,47 @@ button:focus {
 
 .key-legend ul li {
   margin: .5em;
+}
+
+.bg-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--gradient-bg);
+  z-index: -1;
+}
+
+#meme-templates {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90vw;
+  min-width: 320px;
+  max-width: 72rem;
+  margin: 0 auto;
+  background: rgba(0,0,0,.5)
+}
+
+#meme-templates .template {
+  display: block;
+  margin: 1rem;
+  height: 350px;
+  width: auto;
+
+  opacity: .75;
+  border: solid .5rem rgba(255,255,255,.5);
+  transition: transform .2s ease;
+
+}
+#meme-templates a:focus {
+  outline: none;
+}
+#meme-templates .template:hover,
+#meme-templates a:focus .template {
+  cursor: pointer;
+  opacity: 1;
+  border: solid .5rem white;
+  transform: scale(1.1);
 }

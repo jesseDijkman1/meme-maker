@@ -1,7 +1,5 @@
 "use strict";
-// (() => {
 const canvas = document.getElementById("meme-canvas");
-// const ctx = canvas.getContext("2d");
 
 const topTxtInput = document.getElementById("top-txt");
 const bottomTxtInput = document.getElementById("bottom-txt");
