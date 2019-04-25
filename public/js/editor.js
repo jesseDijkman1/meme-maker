@@ -23,7 +23,7 @@ class Meme {
     this.canvas = c;
     this.ctx = c.getContext("2d");
     this.img;
-    this.contentTop = "Hello \n World";
+    this.contentTop = "";
     this.contentBottom = "";
     this.topSize = 16;
     this.bottomSize = 16;

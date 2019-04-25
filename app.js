@@ -87,7 +87,8 @@ app.get("/", (req, res) => {
 
 app.get("/meme-maker", async (req, res) => {
   const step = parseInt(req.query.s),
-        sessionID = req.query.id;
+        sessionID = req.query.id,
+        imgSrc = req.query.img || undefined;
 
   if (!sessionID || !step) return res.redirect("/");
 
@@ -104,9 +105,10 @@ app.get("/meme-maker", async (req, res) => {
       break;
 
     case 2:
-      res.render("textAdd.ejs", {
+    console.log(imgSrc)
+      res.render("editor.ejs", {
         sessionID: sessionID,
-        imgName: memes[sessionID].imgName
+        imgSrc: imgSrc
       })
       break;
   }
