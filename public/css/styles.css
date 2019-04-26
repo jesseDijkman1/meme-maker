@@ -518,3 +518,78 @@ a {
   text-align: right;
   margin: 0;
 }
+
+.color-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.color-input-container:first-of-type {
+  margin-top: 1em;
+}
+.color-input-container {
+  margin-top: .25em;
+}
+.color-input-container label {
+  /* margin-right: 1em; */
+  /* display: block; */
+  line-height: 3em;
+  background: #4f4f4f;
+  width: 2em;
+  text-align: center;
+  font-weight: bold;
+  /* height: 100%; */
+  position: relative;
+  color: white;
+}
+
+.color-input-container label::before {
+  content: '';
+  display: block;
+  height: .5em;
+  width: .5em;
+  position: absolute;
+  border-radius: 100%;
+  left: -1em;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+
+.color-input-container label[for="color-red"]::before {
+  background: red;
+}
+.color-input-container label[for="color-green"]::before {
+  background: green;
+}
+.color-input-container label[for="color-blue"]::before {
+  background: blue;
+}
+
+[name="text-part"] ~ label {
+  opacity: .5;
+  background: lightgrey;
+  padding: .25em .5em;
+  border-radius: 10em;
+  /* line-height: 1.5em; */
+}
+
+#border-color:checked ~ label[for="border-color"] {
+  opacity: 1;
+  background: var(--gradient-bg);
+  color: white;
+}
+#body-color:checked ~ label[for="body-color"] {
+  opacity: 1;
+  background: var(--gradient-bg);
+  color: white;
+}
+#body-color:checked:focus ~ label[for="body-color"] {
+  opacity: .75;
+}
+#border-color:checked:focus ~ label[for="border-color"] {
+  opacity: .75;
+}
+/* [name="text-part"]:focus ~ label {
+  opacity: .75 !important;
+} */

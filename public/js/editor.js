@@ -11,10 +11,9 @@ const autoTxtPosInput = document.getElementById("auto-position");
 const topTxtPosInput = document.getElementById("top-txt-position");
 const bottomTxtPosInput = document.getElementById("bottom-txt-position");
 
-const colorSliders = document.querySelectorAll(".color-slider input[type=range]");
-const colorPreview = document.getElementById("color-preview");
+const colorInputs = document.querySelectorAll(".color-input-container input[type=number]");
+// const colorPreview = document.getElementById("color-preview");
 
-const downloadBtn = document.getElementById("download-meme");
 
 const editorSections = document.getElementsByClassName("editor-section");
 const sectionButtons = document.getElementsByClassName("section-button");
@@ -211,8 +210,8 @@ bottomTxtSizeInput.addEventListener("keydown", e => {
 // })
 
 void function() {
-  const colors = {}
-
+  // const colors = {}
+  //
   // function updateColor(colorType) {
   //   const type = colorType;
   //   const data = colors[colorType];
@@ -228,9 +227,9 @@ void function() {
 
 
 
-  // for (let i = 0; i < colorSliders.length; i++) {
-  //   if (!colors[colorSliders[i].dataset.colorType]) {
-  //     colors[colorSliders[i].dataset.colorType] = {}
+  // for (let i = 0; i < colorInputs.length; i++) {
+  //   if (!colors[colorInputs[i].dataset.char]) {
+  //     colors[colorInputs[i].dataset.char] = {}
   //   }
   //
   //   colors[colorSliders[i].dataset.colorType][colorSliders[i].dataset.char] = {
@@ -243,6 +242,10 @@ void function() {
     sectionButtons[i].addEventListener("click", goToSection)
   }
 
+  // for (let i = 0; i < colorInputs.length; i++) {
+  //   colorInputs[i].addEventListener("keydown", )
+  // }
+
   for (let i = 0; i < editorSections.length; i++) {
     if (i === 0) {
       selectInput(editorSections[i]).focus()
@@ -252,6 +255,8 @@ void function() {
 
     if (selectInput(editorSections[i]).classList.contains("positioner")) {
       positioner(editorSections[i])
+    } else if (editorSections[i].classList.contains("color")) {
+      colorPicker(editorSections[i])
     } else {
       selectInput(editorSections[i]).addEventListener("keydown", switchTarget)
     }
@@ -373,7 +378,7 @@ function selectInput(el) {
     return el.querySelector("button.positioner")
   }
 
-  return el.querySelector("input:first-of-type")
+  return el.querySelector("input[type=number]:first-of-type, input[type=text]:first-of-type")
 }
 
 function switchTarget(e) {
@@ -423,7 +428,7 @@ function switchTarget(e) {
 }
 
 function positioner(el) {
-  console.log(el)
+  // console.log(el)
   let state = false
   let tst = 1;
 
@@ -442,7 +447,7 @@ function positioner(el) {
   })
 
   selectInput(el).addEventListener("keydown", e => {
-    console.log(state)
+    // console.log(state)
     if (e.keyCode == 32) {
       if (state == false) {
         state = true
@@ -515,6 +520,58 @@ function positioner(el) {
         })
 
       }
+    }
+  })
+}
+
+function colorPicker(el) {
+  const redInput = el.querySelector("div #color-red")
+  const greenInput = el.querySelector("div #color-green")
+  const blueInput = el.querySelector("div #color-blue")
+  const prevButton = el.querySelector("footer .section-button.previous")
+  const nextButton = el.querySelector("footer .section-button.next")
+  // const textPart = el.querySelector("[name=text-part]:checked")
+  redInput.addEventListener("keydown", e => {
+    if (e.keyCode == 40) {
+      e.preventDefault()
+      greenInput.focus()
+    }
+  })
+
+  greenInput.addEventListener("keydown", e => {
+    if (e.keyCode == 38) {
+      e.preventDefault()
+      redInput.focus()
+    }
+    if (e.keyCode == 40) {
+      e.preventDefault()
+      blueInput.focus()
+    }
+  })
+
+  blueInput.addEventListener("keydown", e => {
+    if (e.keyCode == 38) {
+      e.preventDefault()
+      greenInput.focus()
+    }
+    if (e.keyCode == 40) {
+      e.preventDefault()
+      prevButton.focus()
+    }
+  })
+
+  prevButton.addEventListener("keydown", e => {
+    if (e.keyCode == 38) {
+      blueInput.focus()
+    }
+    if (e.keyCode == 40) {
+      nextButton.focus()
+    }
+  })
+
+  nextButton.addEventListener("keydown", e => {
+    if (e.keyCode == 38) {
+      prevButton.focus()
     }
   })
 }

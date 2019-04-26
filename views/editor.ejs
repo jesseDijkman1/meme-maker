@@ -20,7 +20,6 @@
 
     <canvas id="meme-canvas" width="500" height="500" data-img="<%= imgSrc %>"></canvas>
     <form id="meme-editor">
-
       <fieldset class="editor-section section-top txt" data-selected>
         <h1>Top Text</h1>
         <input type="text">
@@ -68,6 +67,34 @@
       <fieldset class="editor-section section-bottom position">
         <h1>Bottom Text Position</h1>
         <button class="positioner bottom" type="button"></button>
+        <footer>
+          <button class="section-button previous" type="button">Previous</button>
+          <button class="section-button next" type="button">Next</button>
+        </footer>
+      </fieldset>
+
+      <fieldset class="editor-section section-bottom color">
+        <h1>Top Text Color</h1>
+        <input id="border-color" class="visuallyhidden" type="radio" name="text-part" value="border-color">
+        <input id="body-color" class="visuallyhidden" type="radio" name="text-part" value="body-color" checked>
+        <label for="body-color">Text</label>
+        <label for="border-color">Text border</label>
+
+        <div class="color-input-container">
+          <label for="color-red">R</label>
+          <input id="color-red" data-char="r" type="number" max="255" min="0" step="5" value="255">
+        </div>
+
+        <div class="color-input-container">
+          <label for="color-green">G</label>
+          <input id="color-green" data-char="g" type="number" max="255" min="0" step="5" value="255">
+        </div>
+
+        <div class="color-input-container">
+          <label for="color-blue">B</label>
+          <input id="color-blue" data-char="b" type="number" max="255" min="0" step="5" value="255">
+        </div>
+
         <footer>
           <button class="section-button previous" type="button">Previous</button>
           <button class="section-button next" type="button">Next</button>
