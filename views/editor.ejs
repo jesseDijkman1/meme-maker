@@ -9,11 +9,18 @@
   <title>Meme-Maker</title>
 </head>
 
-<body>
+<body class="overflow-hidden">
   <div class="bg-container"></div>
+  <div class="absolute-positioned">
+    <h1 class="main-title">Meme editor</h1>
+    <h2 class="title-helper">Use the arrows to select and space to click</h2>
+  </div>
+
   <main class="editor">
+
     <canvas id="meme-canvas" width="500" height="500" data-img="<%= imgSrc %>"></canvas>
     <form id="meme-editor">
+
       <fieldset class="editor-section section-top txt" data-selected>
         <h1>Top Text</h1>
         <input type="text">
@@ -33,7 +40,7 @@
 
       <fieldset class="editor-section section-top size">
         <h1>Top Text Size</h1>
-        <input type="number" value="16">
+        <input type="number" placeholder="Numbers add up">
         <footer>
           <button class="section-button previous" type="button">Previous</button>
           <button class="section-button next" type="button">Next</button>
@@ -42,7 +49,7 @@
 
       <fieldset class="editor-section section-bottom size">
         <h1>Bottom Text Size</h1>
-        <input type="number" value="16">
+        <input type="number" placeholder="Numbers add up">
         <footer>
           <button class="section-button previous" type="button">Previous</button>
           <button class="section-button next" type="button">Next</button>

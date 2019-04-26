@@ -12,8 +12,8 @@
 <body>
   <div class="bg-container"></div>
     <main id="meme-templates">
-      <h1>Pick an image</h1>
-      <h2>Use arrows to select and space to use the image</h2>
+      <h1 class="main-title">Pick an image</h1>
+      <h2 class="title-helper">Use arrows to select and space to use the image</h2>
       <% data.forEach((d, i) => { %>
       <a href="/meme-maker?s=2&id=<%= sessionID %>&img=<%= d.url %>">
         <img class="template" src="<%= d.url %>" alt="<%= d.name %>">
