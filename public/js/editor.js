@@ -53,6 +53,9 @@ class Meme {
         this.topPos = {x: this.cWidth / 2, y: this.cHeight / 20};
         this.bottomPos = {x: this.cWidth / 2, y: this.cHeight - this.cHeight / 20};
 
+        this.topSize = this.cHeight * .10
+        this.bottomSize = this.cHeight * .10
+
         this.canvas.setAttribute("width", this.cWidth);
         this.canvas.setAttribute("height", this.cHeight);
 
@@ -71,18 +74,26 @@ class Meme {
     this.ctx.fillStyle = this.color || "white";
 
     // Step 3: Set the size of the top text and draw the text
-    this.ctx.font = `${this.topSize}px Comic Sans MS`;
+    this.ctx.font = `${this.topSize}px Impact`;
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "top";
+
     this.ctx.fillText(this.contentTop, this.topPos.x, this.topPos.y);
-    // this.ctx.fillText(this.contentTop, this.cWidth / 2, this.topPos);
+
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = this.topSize * .05 + .5;
+    this.ctx.strokeText(this.contentTop, this.topPos.x, this.topPos.y);
 
     // Step 4: Set the size of the bottom text and draw the text
-    this.ctx.font = `${this.bottomSize}px Comic Sans MS`;
+    this.ctx.font = `${this.bottomSize}px Impact`;
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "alphabetic";
+
     this.ctx.fillText(this.contentBottom, this.bottomPos.x, this.bottomPos.y);
-    // this.ctx.fillText(this.contentBottom, this.cWidth / 2, this.bottomPos);
+
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = this.topSize * .05 + .5;
+    this.ctx.strokeText(this.contentBottom, this.bottomPos.x, this.bottomPos.y);
   }
 
   topTxt(e) {
